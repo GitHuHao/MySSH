@@ -2,11 +2,23 @@ package com.atguigu.ssh.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * Goods entity. @author MyEclipse Persistence Tools
  */
-
+@Entity
+@Table(name = "goods", catalog = "myssh")
 public class Goods implements java.io.Serializable {
 
 	// Fields
@@ -17,7 +29,7 @@ public class Goods implements java.io.Serializable {
 	private String nm;
 	private String unit;
 	private double amount;
-	private Set histories = new HashSet(0);
+	private Set<History> histories = new HashSet<History>(0);
 
 	// Constructors
 
@@ -27,7 +39,7 @@ public class Goods implements java.io.Serializable {
 
 	/** full constructor */
 	public Goods(Store store, String name, String nm, String unit,
-			double amount, Set histories) {
+			double amount, Set<History> histories) {
 		this.store = store;
 		this.name = name;
 		this.nm = nm;
@@ -37,7 +49,10 @@ public class Goods implements java.io.Serializable {
 	}
 
 	// Property accessors
-
+	@GenericGenerator(name = "generator", strategy = "uuid")
+	@Id
+	@GeneratedValue(generator = "generator")
+	@Column(name = "id", unique = true, nullable = false, length = 32)
 	public String getId() {
 		return this.id;
 	}
@@ -46,6 +61,8 @@ public class Goods implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "storeid")
 	public Store getStore() {
 		return this.store;
 	}
@@ -54,6 +71,7 @@ public class Goods implements java.io.Serializable {
 		this.store = store;
 	}
 
+	@Column(name = "name", length = 50)
 	public String getName() {
 		return this.name;
 	}
@@ -62,6 +80,7 @@ public class Goods implements java.io.Serializable {
 		this.name = name;
 	}
 
+	@Column(name = "nm", length = 10)
 	public String getNm() {
 		return this.nm;
 	}
@@ -70,6 +89,7 @@ public class Goods implements java.io.Serializable {
 		this.nm = nm;
 	}
 
+	@Column(name = "unit", length = 10)
 	public String getUnit() {
 		return this.unit;
 	}
@@ -78,6 +98,7 @@ public class Goods implements java.io.Serializable {
 		this.unit = unit;
 	}
 
+	@Column(name = "amount", precision = 22, scale = 0)
 	public double getAmount() {
 		return this.amount;
 	}
@@ -86,11 +107,12 @@ public class Goods implements java.io.Serializable {
 		this.amount = amount;
 	}
 
-	public Set getHistories() {
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "goods")
+	public Set<History> getHistories() {
 		return this.histories;
 	}
 
-	public void setHistories(Set histories) {
+	public void setHistories(Set<History> histories) {
 		this.histories = histories;
 	}
 

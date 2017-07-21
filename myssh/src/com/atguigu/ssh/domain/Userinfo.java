@@ -1,9 +1,17 @@
 package com.atguigu.ssh.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  * Userinfo entity. @author MyEclipse Persistence Tools
  */
-
+@Entity
+@Table(name = "userinfo", catalog = "myssh")
 public class Userinfo implements java.io.Serializable {
 
 	// Fields
@@ -25,7 +33,10 @@ public class Userinfo implements java.io.Serializable {
 	}
 
 	// Property accessors
-
+	@GenericGenerator(name = "generator", strategy = "uuid")
+	@Id
+	@GeneratedValue(generator = "generator")
+	@Column(name = "id", unique = true, nullable = false, length = 32)
 	public String getId() {
 		return this.id;
 	}
@@ -34,6 +45,7 @@ public class Userinfo implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "name", length = 50)
 	public String getName() {
 		return this.name;
 	}
@@ -42,6 +54,7 @@ public class Userinfo implements java.io.Serializable {
 		this.name = name;
 	}
 
+	@Column(name = "password", length = 32)
 	public String getPassword() {
 		return this.password;
 	}
