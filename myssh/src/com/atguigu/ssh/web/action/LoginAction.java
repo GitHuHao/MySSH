@@ -10,7 +10,6 @@ import com.atguigu.ssh.domain.Userinfo;
 import com.atguigu.ssh.service.UserinfoService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-@Namespace("/")@ParentPackage("struts-default")
 public class LoginAction extends ActionSupport implements ModelDriven<Userinfo> {
 	private static final long serialVersionUID = 5165488760029381702L;
 
@@ -24,8 +23,6 @@ public class LoginAction extends ActionSupport implements ModelDriven<Userinfo> 
 		return userInfo;
 	}
 	
-	@Action(value="login",results={@Result(name="success",location="/jsps/main.jsp"),
-								@Result(name="fail",location="/jsps/userinfo/login.jsp")})
 	public String execute() {
 		Userinfo queryUser = null;
 		// queryUser = userInfoService.getByNameAndPwd(userInfo);
