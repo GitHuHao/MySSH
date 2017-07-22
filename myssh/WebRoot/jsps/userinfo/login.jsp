@@ -41,7 +41,7 @@
 											<TD align="center" colSpan=3 width="623" height="260"
 												background="${path}/picture/welcome_01.gif">
 												<font color="#ff60a0" size="5">
-													<s:fielderror fieldName="name"/>
+													<!-- LoginAction_validation.xml 校验,几种提示 -->
 													<s:fielderror cssStyle="color:red"/>
 												</font>
 											</TD>
@@ -52,6 +52,7 @@
 											<TD align="left" background="" height=9>
 												<DIV align=left>
 													<FONT color=#006633 size=2>
+														<!-- js_css_validate 校验,自动在文本框末提示 -->
 														用户名:<s:textfield id="loginForm_name" name="name" cssClass="tx {required:true,rangelength:[3,12]}" 
 														size="15" maxlength="15" />
 													</FONT>
