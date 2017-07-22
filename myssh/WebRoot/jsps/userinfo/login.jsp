@@ -40,7 +40,6 @@
 										<TR>
 											<TD align="center" colSpan=3 width="623" height="260"
 												background="${path}/picture/welcome_01.gif">
-												<!-- 验证码返回提示 --> <br> <br> <br> <br> <br>
 												<font color="#ff60a0" size="5">
 													<s:fielderror fieldName="name"/>
 													<s:fielderror cssStyle="color:red"/>
@@ -50,19 +49,17 @@
 										<TR>
 											<TD rowSpan=4>
 												<IMG height=92 src="${path}/picture/welcome_02.gif" width=46></TD>
-											<TD align="right" background="" height=13>
+											<TD align="left" background="" height=9>
 												<DIV align=left>
-														<ul id="loginForm_" class="errorMessage">
-           												 <li><span></span></li>	
-            									</ul>
-												
 													<FONT color=#006633 size=2>
 														用户名:<s:textfield id="loginForm_name" name="name" cssClass="tx {required:true,rangelength:[3,12]}" 
 														size="15" maxlength="15" />
 													</FONT>
-												</DIV></TD>
+												</DIV>
+											</TD>
 											<TD rowSpan=4>
-												<IMG height=92 src="${path}/picture/welcome_04.gif" width=402></TD>
+												<IMG height=92 src="${path}/picture/welcome_04.gif" width=402>
+											</TD>
 										</TR>
 										<TR>
 											<TD Align=left background="" height=9>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<!-- 请求参数包含name属性时的校验器 -->
+	<field name="name">
+		<!-- 引用struts 提供的非空校验器 -->
+		<field-validator type="requiredstring">
+			<!-- 校验失败,映射的i18n提示信息 -->
+			<message key="name.required"/>
+		</field-validator>
+		<!-- 关于name属性的长度校验器 -->
+		<field-validator type="stringlength">
+			<!-- [3,12]之间 -->
+			<param name="maxLength">12</param>
+			<param name="minLength">3</param>
+			<!-- 校验失败提示消息 -->
+			<message key="name.length"/>
+		</field-validator>
+	</field>
+	<!-- 请求参数包含password 属性字段时的校验器 -->
+	<field name="password">
+		<!-- 非空校验 -->
+		<field-validator type="requiredstring">
+			<!-- 校验失败映射i18n文件的提示信息 -->
+			<message key="password.required"/>
+		</field-validator>
+	</field>
+</validators>  		

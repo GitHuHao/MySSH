@@ -26,9 +26,5 @@ public class LoginAction extends ActionSupport implements ModelDriven<Userinfo> 
 		Userinfo queryUser = userInfoService.getByNameAndPwd(userInfo);
 		return queryUser == null ? "fail" : "success";
 	}
-
-	public void setUserInfoService(UserinfoService userInfoService) {
-		this.userInfoService = userInfoService;
-	}
 	
 }

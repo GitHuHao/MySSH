@@ -10,12 +10,15 @@
 	<!-- 启用开发者模式,struts.xml 修改后,快速自动重启 -->
 	<constant name="struts.devMode" value="true" />
 	
+	<constant name="struts.custom.i18n.resources" value="message"/>
+	
 	<!-- 定义ActionBean 由谁负责创建,struts2-core-2.3.15.3.jar\default.properties 在默认为spring创建-->
 	<constant name="struts.objectFactory" value="spring"/>
 	
 	<package name="default" namespace="/" extends="struts-default">
 		<!-- 由ioc管理ActionBean, class只需与伪类方式,引用ioc中注册的ActionBea的 id即可 -->
 		<action name="login" class="loginAction" method="login">
+			<result name="input">/jsps/userinfo/login.jsp</result>
 			<result type="redirect" name="success">/jsps/main.jsp</result>
 			<result name="fail">/jsps/userinfo/login.jsp</result>
 		</action>
