@@ -1,5 +1,6 @@
 package com.atguigu.ssh.web.action;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,12 @@ public class LoginAction extends ActionSupport implements ModelDriven<Userinfo> 
 	
 	public String login() {
 		Userinfo queryUser = userInfoService.getByNameAndPwd(userInfo);
-		return queryUser == null ? "fail" : "success";
+		if(queryUser==null){
+			this.addActionError(this.getText("login.error"));
+			return INPUT;
+		}
+		ServletActionContext.getRequest().getSession().setAttribute("loginUser", queryUser);
+		return SUCCESS;
 	}
 	
 }
