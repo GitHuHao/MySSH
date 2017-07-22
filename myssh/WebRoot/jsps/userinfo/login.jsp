@@ -14,16 +14,17 @@
 <HEAD>
 <TITLE>用户登陆</TITLE>
 <link rel="stylesheet" type="text/css" href="${path}/css/maple.css" />
-<%-- <script type="text/javascript" src="${path}/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${path}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="${path}/js/jquery.validate.js"></script>
 <script type="text/javascript" src="${path}/js/jquery.metadata.js"></script>
 <script type="text/javascript" src="${path}/js/message_zh_CN.js"></script>
 <script type="text/javascript">
-	$(function(){
-		// 添加客户端校验
-		$("#loginForm").validate();
+	$(function(){ // $(document).ready(function(){ }) 的简写,前者不等dom树绘制完就开始校验,后者要等dom绘制完在执行
+		// $(this) 当前jquery对象,""#id",".class"
+		$("#loginForm").validate(); // 失焦立即校验
 	});
-</script> --%>
+</script>
+
 </HEAD>
 <BODY  bgColor=#ffffff leftMargin=0 background="${path}/picture/bj1.gif" topMargin=0>
 		<s:debug/>
@@ -41,7 +42,8 @@
 												background="${path}/picture/welcome_01.gif">
 												<!-- 验证码返回提示 --> <br> <br> <br> <br> <br>
 												<font color="#ff60a0" size="5">
-													
+													<s:fielderror fieldName="name"/>
+													<s:fielderror cssStyle="color:red"/>
 												</font>
 											</TD>
 										</TR>
@@ -55,7 +57,8 @@
             									</ul>
 												
 													<FONT color=#006633 size=2>
-														用户名:<s:textfield id="loginForm_name" name="name" size="15" maxlength="15" />
+														用户名:<s:textfield id="loginForm_name" name="name" cssClass="tx {required:true,rangelength:[3,12]}" 
+														size="15" maxlength="15" />
 													</FONT>
 												</DIV></TD>
 											<TD rowSpan=4>
@@ -65,7 +68,8 @@
 											<TD Align=left background="" height=9>
 												<DIV align=left>
 													<FONT color=#006633 size=2>
-														密码:<s:password id="loginForm_password" name="password" size="15" maxlength="15"/>
+														密码:<s:password id="loginForm_password" cssClass="tx {required:true}" name="password" 
+														size="15" maxlength="15"/>
 													</FONT>
 												</DIV>
 											</TD>
