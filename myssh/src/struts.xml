@@ -6,16 +6,17 @@
 <struts>
 	<!-- 允许使用 store_* method={1} 通配方式注册 action--> 
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	
 	<!-- 启用开发者模式,struts.xml 修改后,快速自动重启 -->
 	<constant name="struts.devMode" value="true" />
+	
 	<!-- 定义ActionBean 由谁负责创建,struts2-core-2.3.15.3.jar\default.properties 在默认为spring创建-->
-	<constant name="struts.objectFactory" value="struts"/>
-	<!-- 包名为default,命名空间为"/",继承struts-default.xml 定义的参数,拦截器等 -->
+	<constant name="struts.objectFactory" value="spring"/>
+	
 	<package name="default" namespace="/" extends="struts-default">
-		<!-- 前面定义由struts 创建Action对象,因此使用全类名,默认为execute方法处理请求,返回结果集类型为redirect,
-			返回字符串为SUCCCESS,因此method="execute" ,type="redirect",name="success" 全部省略 -->
-		<action name="login" class="com.atguigu.ssh.web.action.LoginAction">
-			<result>/jsps/main.jsp</result>
+		<!-- 由ioc管理ActionBean, class只需与伪类方式,引用ioc中注册的ActionBea的 id即可 -->
+		<action name="login" class="loginAction" method="login">
+			<result type="redirect" name="success">/jsps/main.jsp</result>
 			<result name="fail">/jsps/userinfo/login.jsp</result>
 		</action>
 	</package>

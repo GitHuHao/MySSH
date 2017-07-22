@@ -5,22 +5,26 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-	<!-- Spring ServletContextListener -->
+	<!-- 注册spring ioc容器监听器, 监听到eb容器启动 ,随即读取applicationContext.xml 生成ioc容器-->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- 加载配置文件默认 WEB-INF/applicationContext.xml -->
+	<!-- 默认加载 WEB-INF/applicationContext.xml,spring主配置文件位置或名称发生改变,需要显示声明,全局变量 context-param-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 
-	<!-- Struts2 核心 过滤器 -->
-	<!--  -->
+	<!-- Struts2 核心 过滤器 .存在多个filter时,根据注册先后顺序排序,servlet注册到web.xml中,根据load-on-startup属性决定生效的先后顺序-->
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+		<!-- 默认到src目录下读取struts.xml主配置文件,需要改动得设置 init-param 局部变量,每个action请求,都会读取一次,生成一个action对象 -->
+		<!-- <init-param>
+			<param-name>filterConfigLocation</param-name>
+			<param-value>classpath*:struts.xml</param-value>
+		</init-param> -->
 	</filter>
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
