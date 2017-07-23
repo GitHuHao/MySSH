@@ -1,12 +1,15 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="/struts-tags" prefix="s"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<%
+	pageContext.setAttribute("path", request.getContextPath());
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title>添加新仓库</title>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='/css/maple.css'/>"></link>
+	href="${path}/css/maple.css"></link>
 <style type="text/css">
 	.tx td{
 		padding:3px;
@@ -24,7 +27,7 @@
 	<table border="0" width="100%" cellpadding="0" cellspacing="0">
 		<tr valign="top">
 			<td rowspan="2">
-				<s:form action="store_add" namespace="/" method="post" theme="simple" name="select" target="_top">
+				<s:form id="store_add" name="select" action="store_add" namespace="/store" target="_top" method="post" theme="simple">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tx" align="center">
 						<colgroup>
 							<col width="20%" align="right">
@@ -40,7 +43,7 @@
 								仓库名称：
 							</td>
 							<td>
-								<s:textfield cssClass="tx" name="name"></s:textfield>
+								<s:textfield name="name" id="store_add_name" cssClass="tx"/>
 							</td>
 						</tr>
 						<tr>
@@ -48,7 +51,7 @@
 								仓库地址：
 							</td>
 							<td>
-								<s:textfield cssClass="tx" name="addr"></s:textfield>
+								<s:textfield name="addr" id="store_add_addr" cssClass="tx"/>
 							</td>
 						</tr>
 						<tr>
@@ -56,13 +59,13 @@
 								库管员：
 							</td>
 							<td>
-								<s:textfield cssClass="tx" name="manager"></s:textfield>
+								<s:textfield name="manager" id="store_add_manager" cssClass="tx"/>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center" style="padding-top:10px;">
-								<input class="tx" style="width:120px;margin-right:30px;" type="button" onclick="document.forms[0].submit();" value="确定">
-								<input class="tx" style="width:120px;margin-right:30px;" type="reset" value="取消">
+								<s:submit cssClass="tx" cssStyle="width:120px;margin-right:30px;" value="确定"/>
+								<s:reset cssClass="tx" cssStyle="width:120px;margin-right:30px;" value="取消"/>
 							</td>
 						</tr>
 					</table>
@@ -71,19 +74,19 @@
 			<td valign="top" width="20%">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td background="<c:url value='/picture/loginpage.gif'/>" align="center"><br>
+						<td background="${path}/picture/loginpage.gif" align="center"><br>
 						<font color="red">操作步骤</font>
 						</td>
 					</tr>
 					<tr>
-						<td background="<c:url value='/picture/bg1.jpg'/>" style="padding-left:10px;">
+						<td background="${path}/picture/bg1.jpg" style="padding-left:10px;">
 							1.输入仓库的名称,地址
 							<br/>
 							2.保存后直接去显示仓库列表
 						</td>
 					</tr>
 					<tr>
-						<td><img src="<c:url value='/picture/bottom.jpg'/>"></td>
+						<td><img src="${path}/picture/bottom.jpg"></td>
 					</tr>
 				</table>
 		</tr>

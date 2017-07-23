@@ -1,12 +1,15 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="/struts-tags" prefix="s"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>    
+<%
+	pageContext.setAttribute("path", request.getContextPath());
+%>    
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title>仓库管理</title>
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='/css/maple.css'/>"></link>
+	href="${path}/css/maple.css"></link>
 <style type="text/css">
 	.tx td{
 		padding:3px;
@@ -25,19 +28,19 @@
 		color:blue;
 	}
 </style>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${path}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	$(function(){
-		// 删除链接确认效果
 		$(".delLink").click(function(event){
-			var isConfirm = window.confirm("确认删除吗？");
+			var isConfirm = window.confirm("确定删除吗?");
 			if(!isConfirm){
-				// 阻止默认事件，阻止链接
 				event.preventDefault();
 			}
 		});
 		
 	});
+</script>
+
 </script>
 </head>
 <body>
@@ -50,7 +53,7 @@
 	<table border="0" width="100%" cellpadding="0" cellspacing="0">
 		<tr valign="top">
 			<td rowspan="2">
-				<form action="" method="post" name="select">
+				<s:form action="store_toAddJsp" namespace="/store" method="get" theme="simple">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tx" align="center">
 						<colgroup>
 							<col width="20%" align="right">
@@ -71,17 +74,17 @@
 										<td>操作</td>
 									</tr>
 									<!-- value 也可以写 #request.stores , #attr.stores -->
-									<s:iterator value="stores" var="store">
+									<s:iterator value="storeList" var="store">
 										<tr>
-											<td><s:property value="#store.name"/> </td>
-											<td><s:property value="#store.addr"/> </td>
-											<td><s:property value="#store.manager" /> </td>
+											<td>${name}</td>
+											<td>${addr} </td>
+											<td><s:property value="#store.manager"/></td>
 											<td>
-												<s:a action="store_editview" namespace="/" >修改
-													<s:param name="id" value="#store.id"></s:param>
+												<s:a action="store_toUpdateJsp" namespace="/store">修改
+													<s:param name="id" value="#store.id"/>
 												</s:a>
-												<s:a action="store_delete" namespace="/" cssClass="delLink">删除
-													<s:param name="id" value="#store.id"></s:param>
+												<s:a action="store_delete" namespace="/store" value="#store.name" cssClass="delLink">删除
+													<s:param name="id" value="#store.id"/>
 												</s:a>
 											</td>		
 										</tr>
@@ -91,24 +94,22 @@
 						</tr>
 						<tr>
 							<td colspan="2" align="right" style="padding-top:10px;">
-								<input class="tx" style="width:120px;margin-right:30px;" 
-								type="button" 
-								onclick="window.location.href='<c:url value='/jsps/store/add.jsp'/>'" 
-								value="创建新仓库">
+								<!-- struts 的button 标签需要嵌套在form 以get提交才能生效 -->
+								<s:submit cssClass="tx" cssStyle="width:120px;margin-right:30px;" value="创建新仓库"/>
 							</td>
 						</tr>
 					</table>
-				</form>
+				</s:form>	
 			</td>
 			<td valign="top" width="20%">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td background="<c:url value='/picture/loginpage.gif'/>" align="center"><br>
+						<td background="${path}/picture/loginpage.gif" align="center"><br>
 						<font color="red">操作步骤</font>
 						</td>
 					</tr>
 					<tr>
-						<td background="<c:url value='/picture/bg1.jpg'/>" style="padding-left:10px;">
+						<td background="${path}/picture/bg1.jpg" style="padding-left:10px;">
 							1.显示所有货物的库存情况
 							<br/>
 							2.根据条件查询某种货的库存情况
@@ -117,7 +118,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><img src="<c:url value='/picture/bottom.jpg'/>"></td>
+						<td><img src="${path}/picture/bottom.jpg"></td>
 					</tr>
 				</table>
 			</td>

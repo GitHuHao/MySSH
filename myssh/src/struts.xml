@@ -23,4 +23,6 @@
 			<result name="fail">/jsps/userinfo/login.jsp</result>
 		</action>
 	</package>
+	
+	<include file="struts-store.xml"/>
 </struts>
