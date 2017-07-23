@@ -19,12 +19,17 @@
 				<param name="root">store</param>
 				<!-- 允许传送的属性 -->
 				<param name="includeProperties">
-					id,name
+					id,name,goodses
 				</param>
 				<!-- 不允许传送的属性,2选1进行过滤即可 -->
 				<param name="excludeProperties">
 					addr
 				</param>
+			</result>
+			
+			<result name="deleteByAjax" type="json">
+				<!-- json形式,返回Action类的指定属性-->
+				<param name="root">store</param>
 			</result>
 			
 		</action>

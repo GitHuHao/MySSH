@@ -49,7 +49,21 @@
 		        		var isConfirm = window.confirm("确认删除吗?");
 		        		if(!isConfirm){
 		        			event.preventDefault();
-		        		};
+		        		}else{
+		        			var id="tr_"+store_id;
+		        			$.post(
+		        					"${path}/store/store_deleteByAjax.action",
+		        					{"id":store_id},
+		        					function(back){
+		        						if(back==null){
+		        							$("#"+id).remove();
+		        						}else{
+		        							alert("删除失败!!");
+		        						};
+		        						event.preventDefault();
+		        					}
+		        			);
+		        		}
 		        	}else{
 		        		alert("当前仓库存在货物禁止删除!");
 		        		event.preventDefault();
@@ -95,7 +109,7 @@
 									</tr>
 									<!-- value 也可以写 #request.stores , #attr.stores -->
 									<s:iterator value="storeList" var="store">
-										<tr>
+										<tr id="tr_${id}">
 											<td>${name}</td>
 											<td>${addr} </td>
 											<td><s:property value="#store.manager"/></td>

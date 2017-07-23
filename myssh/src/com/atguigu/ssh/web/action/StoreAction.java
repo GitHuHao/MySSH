@@ -55,6 +55,12 @@ public class StoreAction extends ActionSupport implements ModelDriven<Store> {
 		return "delete";
 	}
 	
+	public String deleteByAjax(){
+		storeService.delete(store);
+		store=null;
+		return "deleteByAjax";
+	}
+	
 	public Store getModel(){
 		return store;
 	}
