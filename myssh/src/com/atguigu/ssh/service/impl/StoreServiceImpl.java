@@ -30,7 +30,7 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public void delete(Store store) {
 		store = storeDao.getById(store);
-		if(store.getGoodses().isEmpty()){
+		if(store.getGoodses()==null||store.getGoodses().isEmpty()){
 			storeDao.delete(store);
 		}else{
 			throw new RuntimeException("该仓库存在货物,不能直接删除!");
@@ -46,5 +46,13 @@ public class StoreServiceImpl implements StoreService {
 	public List<Store> getAll() {
 		return storeDao.getAll();
 	}
-
+	
+	@Transactional(readOnly=true)
+	public boolean isEmpty(Store store){
+		store = storeDao.getById(store);
+		if(store.getGoodses()==null||store.getGoodses().isEmpty()){
+			return true;
+		}
+		return false;
+	}
 }

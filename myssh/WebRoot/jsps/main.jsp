@@ -13,10 +13,10 @@
 		background="${path}/picture/topbk.jpg;" border=0 style="width: 1264px; ">
 		<TBODY>
 			<TR>
-				<TD width=733 background="/picture/header.jpg;"></TD>
+				<TD width=733 background="${path}/picture/header.jpg;"></TD>
 				<TD><FONT style="FONT-SIZE: x-small" color=#fffaed><BR>
 					<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<FONT color=#804060>当前用户： </font> 
+						<FONT color=#804060>当前用户：${loginUser.name } </font> 
 					</FONT>
 				</TD>
 			</TR>

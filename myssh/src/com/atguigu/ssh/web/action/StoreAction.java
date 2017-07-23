@@ -19,7 +19,7 @@ public class StoreAction extends ActionSupport implements ModelDriven<Store> {
 
 	private Store store = new Store();
 	private List<Store> storeList;
-
+	
 	public String list(){
 		storeList = storeService.getAll();
 		return "list";
@@ -44,6 +44,12 @@ public class StoreAction extends ActionSupport implements ModelDriven<Store> {
 		storeService.update(store);
 		return "update";
 	}
+	
+	public String delCheck(){
+		store = storeService.getById(store);
+		return "ajaxDelCheck";
+	}
+	
 	public String delete(){
 		storeService.delete(store);
 		return "delete";

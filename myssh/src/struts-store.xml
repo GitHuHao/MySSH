@@ -4,7 +4,7 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<package name="com.atguigu.ssh" namespace="/store" extends="struts-default">
+	<package name="com.atguigu.ssh" namespace="/store" extends="json-default">
 		<!-- struts.enable.DynamicMethodInvocation 开启通配模式 -->
 		<action name="store_*" class="storeAction" method="{1}">
 			<result name="list">/jsps/store/list.jsp</result>
@@ -13,6 +13,20 @@
 			<result name="toUpdateJsp">/jsps/store/update.jsp</result>
 			<result name="update">/jsps/main.jsp</result>
 			<result type="redirectAction" name="delete">store_list</result>
+			
+			<result name="ajaxDelCheck" type="json">
+				<!-- json形式,返回Action类的指定属性-->
+				<param name="root">store</param>
+				<!-- 允许传送的属性 -->
+				<param name="includeProperties">
+					id,name
+				</param>
+				<!-- 不允许传送的属性,2选1进行过滤即可 -->
+				<param name="excludeProperties">
+					addr
+				</param>
+			</result>
+			
 		</action>
 	</package>
 </struts>

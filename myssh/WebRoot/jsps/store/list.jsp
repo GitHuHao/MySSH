@@ -32,15 +32,35 @@
 <script type="text/javascript">
 	$(function(){
 		$(".delLink").click(function(event){
-			var isConfirm = window.confirm("确定删除吗?");
-			if(!isConfirm){
-				event.preventDefault();
-			}
+			var url=$(this).attr("href");
+			var param_str = url.split("?")[1];
+			var store_id = param_str.split("&")[0].split("=")[1];
+			// 只有在控制台才会打印,比alert()调试更为和谐
+			// console.log(url+"\n"+param_str+"\n"+store_id);
+			$.ajax({
+		         type: 'post',
+		         url: "${path}/store/store_delCheck.action",
+		         data:{"id":store_id},
+		         dataType: 'json',
+		         async : false,
+		         success: function(store){
+		        	 // json 格式对象包含集合的非空判断
+		        	if(store.goodses==""){
+		        		var isConfirm = window.confirm("确认删除吗?");
+		        		if(!isConfirm){
+		        			event.preventDefault();
+		        		};
+		        	}else{
+		        		alert("当前仓库存在货物禁止删除!");
+		        		event.preventDefault();
+		        	}
+		         },
+		         error:function(){
+		        	alert("error");
+		         }
+			});	
 		});
-		
 	});
-</script>
-
 </script>
 </head>
 <body>
@@ -83,8 +103,9 @@
 												<s:a action="store_toUpdateJsp" namespace="/store">修改
 													<s:param name="id" value="#store.id"/>
 												</s:a>
-												<s:a action="store_delete" namespace="/store" value="#store.name" cssClass="delLink">删除
+												<s:a action="store_delete" cssClass="delLink">删除
 													<s:param name="id" value="#store.id"/>
+													<s:param name="name" value="#store.id"/>
 												</s:a>
 											</td>		
 										</tr>

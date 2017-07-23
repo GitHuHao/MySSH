@@ -11,5 +11,6 @@ public interface StoreService {
 	void delete(Store store);
 	Store getById(Store store);
 	List<Store> getAll();
+	boolean isEmpty(Store store);
 	
 }
