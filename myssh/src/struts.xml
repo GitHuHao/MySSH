@@ -25,4 +25,5 @@
 	</package>
 	
 	<include file="struts-store.xml"/>
+	<include file="struts-goods.xml"/>
 </struts>

@@ -44,10 +44,45 @@
 					} 
 					opts ="<option value=''>-请选择仓库-</option>"+opts;
 					$("#s_sel").append(opts);
-					// $("#s_sel").prop("list",data.storeList);
 				}
 			}
 		});
+		
+		$("#query_sub").click(function(event){
+			event.preventDefault();
+			$.ajax({
+				url:"${path}/goods/goods_ajaxQuery.action",
+				type:"post",
+				dataType:"json",
+				data:{"nm":$("#nm").val(),"name":$("#name").val(),"store.id":$("#s_sel").val()},
+				success:function(back){
+					console.info(back);
+					event.preventDefault();
+					var tr="";
+					for(var i=0;i<back.length;i++){
+						goods = back[i];
+						nm = "<td>"+goods.nm+"</td>";
+						name = "<td>"+goods.name+"</td>";
+						unit = "<td>"+goods.unit+"</td>";
+						amount = "<td>"+goods.amount+"</td>";
+						store_name = "<td>"+goods.store.name+"</td>";
+						
+						opt="<td>"+
+								"<a href='${path}/goods/goods_toExportJsp.action?id="+goods.id+"'>出库</a>&nbsp;&nbsp;&nbsp;"+
+								"<a href='${path}/goods/goods_toImportJsp.action?id="+goods.id+"'>入库</a>&nbsp;&nbsp;&nbsp;"+
+								"<a href='${path}/goods/goods_hisList.action?id="+goods.id+"'>历史记录</a>"+
+							"</td>";
+						tr=tr+"<tr class='tr_data'>"+nm+name+unit+amount+store_name+opt+"</tr>";
+					}
+					$(".tr_data").remove();
+					$("#goods_tab").append(tr);
+				},
+				error:function(){
+					alert("error!");
+					event.preventDefault();
+				}
+			});
+		}); 
 	});
 </script>
 </head>
@@ -61,7 +96,7 @@
 	<table border="0" width="100%" cellpadding="0" cellspacing="0">
 		<tr>
 			<td rowspan="1">
-				<s:form id="goods_list" name="select" namespace="/goods" action="goods_list" method="post" theme="simple">
+				<s:form id="" name="select" namespace="/goods" action="goods_list" method="post" theme="simple">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tx" align="center">
 						<colgroup>
 							<col width="20%" align="right">
@@ -95,13 +130,11 @@
 							<td>
 								<s:select id="s_sel" list="{}" key="id" name="store.id" value="name">
 								</s:select>
-								<select class="tx" style="width: 120px;" name="store.id" id="s_sel">
-								</select>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2" align="right" style="padding-top:10px;">
-								<s:submit cssClass="tx" cssStyle="width:120px;margin-right:30px;" value="查询" />
+								<s:submit id="query_sub" cssClass="tx" cssStyle="width:120px;margin-right:30px;" value="查询" />
 							</td>
 						</tr>
 					</table>
@@ -144,7 +177,7 @@
 						</tr>
 						<tr>
 							<td>
-								<table class="store">
+								<table id="goods_tab" class="store">
 									<tr style="background:#D2E9FF;text-align: center;">
 										<td>简记码</td>
 										<td>名称</td>
@@ -153,26 +186,6 @@
 										<td>所在仓库</td>
 										<td>操作</td>		
 									</tr>
-									<s:iterator value="goodsList" var="goods">
-										<tr>
-											<td><s:property value="#goods.nm"/></td>
-											<td><s:property value="#goods.name"/></td>
-											<td><s:property value="#goods.unit"/></td>
-											<td><s:property value="#goods.amount"/></td>
-											<td><s:property value="#goods.store.name"/></td>
-											<td>
-												<s:a action="goods_toExportJsp" namespace="/goods">出库
-													<s:param name="id" value="#goods.id"/>
-												</s:a>&nbsp;&nbsp;
-												<s:a action="goods_toImportJsp" namespace="/goods">出库
-													<s:param name="id" value="#goods.id"/>
-												</s:a>&nbsp;&nbsp;
-												<s:a action="goods_hisList" namespace="/goods">历史记录
-													<s:param name="id" value="#goods.id"/>
-												</s:a>
-											</td>
-										</tr>
-									</s:iterator>
 								</table>
 							</td>
 						</tr>

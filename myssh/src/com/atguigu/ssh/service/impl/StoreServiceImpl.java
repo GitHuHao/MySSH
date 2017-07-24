@@ -1,12 +1,12 @@
 package com.atguigu.ssh.service.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.atguigu.ssh.dao.GoodsDao;
 import com.atguigu.ssh.dao.StoreDao;
 import com.atguigu.ssh.domain.Store;
 import com.atguigu.ssh.service.StoreService;
@@ -16,7 +16,7 @@ public class StoreServiceImpl implements StoreService {
 
 	@Autowired
 	private StoreDao storeDao;
-	
+
 	@Transactional
 	public void save(Store store) {
 		storeDao.save(store);
@@ -55,4 +55,5 @@ public class StoreServiceImpl implements StoreService {
 		}
 		return false;
 	}
+	
 }

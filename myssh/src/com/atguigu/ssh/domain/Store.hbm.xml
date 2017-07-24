@@ -19,7 +19,7 @@
         <property name="manager" type="string">
             <column name="manager" length="32" />
         </property>
-        <set name="goodses" inverse="true" lazy="false">
+        <set name="goodses" inverse="true" >
             <key>
                 <column name="storeid" length="32" />
             </key>

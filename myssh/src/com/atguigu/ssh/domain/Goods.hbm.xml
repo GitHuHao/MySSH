@@ -10,7 +10,7 @@
             <column name="id" length="32" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="store" class="com.atguigu.ssh.domain.Store" lazy="false">
+        <many-to-one name="store" class="com.atguigu.ssh.domain.Store">
             <column name="storeid" length="32" />
         </many-to-one>
         <property name="name" type="string">
