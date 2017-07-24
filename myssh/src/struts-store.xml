@@ -32,6 +32,19 @@
 				<param name="root">store</param>
 			</result>
 			
+			<result name="ajaxSelectList" type="json">
+				<!-- json形式,返回Action类的指定属性
+				<param name="root">storeList</param>
+				<param name="includeProperties">
+					\[\d+\]\.id,
+					\[\d+\]\.name
+				</param> -->
+				<param name="root">action</param>
+				<param name="includeProperties">
+					storeList\[\d+\]\.id,
+					storeList\[\d+\]\.name
+				</param>
+			</result>
 		</action>
 	</package>
 </struts>

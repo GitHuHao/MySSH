@@ -30,19 +30,22 @@
 <!-- 引入jquery , jquery版本使用1.4+ -->
 <script type="text/javascript" src="${path}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
-	// 页面加载后 执行
 	$(function(){
-		// 发起ajax请求，获取仓库列表
-		$.post("${path}/store_ajaxlist.action",function(data){
-			// 使用火狐firebug插件，将信息输出到浏览器控制台
-			console.info(data);
-			// 将data数据 ，显示select下拉列表中 
-			// 针对id为storeSelect的select元素，添加 <option>
-			for(var i=0 ; i< data.stores.length; i++){
-				var store = data.stores[i];// 每个仓库
-				var $option = $("<option value='"+store.id+"'>"+store.name+"</option>");
-				// 加入select
-				$("#storeSelect").append($option);
+		$.ajax({
+			url:"${path}/store/store_ajaxSelectList.action",
+			type:"get",
+			success:function(data){
+				console.log(data.storeList);
+				if(data!=null){
+					var opts="";
+					for(var i=0;i<data.storeList.length;i++){
+						store = data.storeList[i];
+						opts=opts+"<option value='"+store.id+"'>"+store.name+"</option>";
+					} 
+					opts ="<option value=''>-请选择仓库-</option>"+opts;
+					$("#s_sel").append(opts);
+					// $("#s_sel").prop("list",data.storeList);
+				}
 			}
 		});
 	});
@@ -90,8 +93,9 @@
 								选择仓库：
 							</td>
 							<td>
-								<select class="tx" style="width: 120px;" name="store.id" id="storeSelect">
-									<option value="">--请选择仓库--</option>
+								<s:select id="s_sel" list="{}" key="id" name="store.id" value="name">
+								</s:select>
+								<select class="tx" style="width: 120px;" name="store.id" id="s_sel">
 								</select>
 							</td>
 						</tr>
@@ -128,7 +132,6 @@
 		</tr>
 		<tr valign="top">
 			<td rowspan="2">
-				<form action="" method="post" name="select">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tx" align="center">
 						<colgroup>
 							<col width="20%" align="right">
@@ -150,16 +153,30 @@
 										<td>所在仓库</td>
 										<td>操作</td>		
 									</tr>
-									<s:iterator >
+									<s:iterator value="goodsList" var="goods">
 										<tr>
-										
+											<td><s:property value="#goods.nm"/></td>
+											<td><s:property value="#goods.name"/></td>
+											<td><s:property value="#goods.unit"/></td>
+											<td><s:property value="#goods.amount"/></td>
+											<td><s:property value="#goods.store.name"/></td>
+											<td>
+												<s:a action="goods_toExportJsp" namespace="/goods">出库
+													<s:param name="id" value="#goods.id"/>
+												</s:a>&nbsp;&nbsp;
+												<s:a action="goods_toImportJsp" namespace="/goods">出库
+													<s:param name="id" value="#goods.id"/>
+												</s:a>&nbsp;&nbsp;
+												<s:a action="goods_hisList" namespace="/goods">历史记录
+													<s:param name="id" value="#goods.id"/>
+												</s:a>
+											</td>
 										</tr>
 									</s:iterator>
 								</table>
 							</td>
 						</tr>
 					</table>
-				</form>
 			</td>
 		</tr>
 	</table>

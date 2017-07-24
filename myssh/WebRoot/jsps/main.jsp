@@ -44,7 +44,7 @@
 									<DIV id=shouhuo>
 										<s:a id="left1002" action="store_list" namespace="/store" target="content">[仓库管理]</s:a>
 										<BR/> 
-										<A target="content" id="left1002" href="${path}/jsps/store/remain.jsp;">[库存管理]</A>
+										<A target="content" id="left1002" href="${path}/jsps/goods/list.jsp">[库存管理]</A>
 										<BR/> 
 										<A id="left1003" target="content" href="${path}/jsps/save/save.jsp;">[入库]</A>
 										<BR/>
