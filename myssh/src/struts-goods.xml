@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="goods" namespace="/goods" extends="json-default">
+		<action name="goods_*" class="goodsAction" method="{1}">
+			<result name="toAddJsp">/jsps/goods/add.jsp</result>
+			<result name="toListJsp">/jsps/goods/list.jsp</result>
+			<result name="toImportJsp">/jsps/goods/plus.jsp</result>
+			<result name="toExportJsp">/jsps/goods/minus.jsp</result>
+			<result name="save">/jsps/goods/list.jsp</result>
+			<result name="plus">/jsps/goods/list.jsp</result>
+			<result name="minus">/jsps/goods/list.jsp</result>
+			<result name="hisList">/jsps/his/list.jsp</result>
+			<result name="ajaxQuery" type="json">
+				<param name="root">page</param>
+			</result>
+		</action>
+	</package>
+</struts>

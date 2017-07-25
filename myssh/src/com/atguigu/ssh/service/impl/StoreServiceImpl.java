@@ -37,12 +37,12 @@ public class StoreServiceImpl implements StoreService {
 		}
 	}
 
-	@Transactional(readOnly=true)
+	@Transactional
 	public Store getById(Store store) {
 		return storeDao.getById(store);
 	}
 
-	@Transactional(readOnly=true)
+	@Transactional
 	public List<Store> getAll() {
 		return storeDao.getAll();
 	}

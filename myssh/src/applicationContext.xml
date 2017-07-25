@@ -11,6 +11,8 @@
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 	
+<!-- 	<import resource="his_aspect.xml"/> -->
+	
 	<!-- 导入数据源配置文件 -->
 	<context:property-placeholder location="classpath*:db.properties" />
 	
@@ -54,6 +56,6 @@
 	<!-- 开启事务注解驱动@Transactional  -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<!-- 开启aop注解驱动 -->
-	<aop:aspectj-autoproxy/>
+<!-- 	<aop:aspectj-autoproxy/> -->
 
 </beans>
