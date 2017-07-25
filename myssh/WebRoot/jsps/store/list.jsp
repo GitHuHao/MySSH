@@ -36,7 +36,7 @@
 			var param_str = url.split("?")[1];
 			var store_id = param_str.split("&")[0].split("=")[1];
 			// 只有在控制台才会打印,比alert()调试更为和谐
-			// console.log(url+"\n"+param_str+"\n"+store_id);
+			console.log(url+"\n"+param_str+"\n"+store_id);
 			$.ajax({
 		         type: 'post',
 		         url: "${path}/store/store_delCheck.action",

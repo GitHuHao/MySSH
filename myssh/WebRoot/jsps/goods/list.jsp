@@ -31,6 +31,7 @@
 <script type="text/javascript" src="${path}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	$(function(){
+		// 动态加载下来列选
 		$.ajax({
 			url:"${path}/store/store_ajaxSelectList.action",
 			type:"get",
@@ -47,7 +48,7 @@
 				}
 			}
 		});
-		
+		// 动态展示查询结果
 		$("#query_sub").click(function(event){
 			event.preventDefault();
 			$.ajax({
@@ -74,8 +75,8 @@
 							"</td>";
 						tr=tr+"<tr class='tr_data'>"+nm+name+unit+amount+store_name+opt+"</tr>";
 					}
-					$(".tr_data").remove();
-					$("#goods_tab").append(tr);
+					$(".tr_data").remove(); // 移除旧的
+					$("#goods_tab").append(tr); // 添加新的
 				},
 				error:function(){
 					alert("error!");

@@ -53,5 +53,7 @@
 	
 	<!-- 开启事务注解驱动@Transactional  -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- 开启aop注解驱动 -->
+	<aop:aspectj-autoproxy/>
 
 </beans>

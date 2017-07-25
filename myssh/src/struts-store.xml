@@ -12,7 +12,7 @@
 			<result name="add">/jsps/main.jsp</result>
 			<result name="toUpdateJsp">/jsps/store/update.jsp</result>
 			<result name="update">/jsps/main.jsp</result>
-			<result type="redirectAction" name="delete">store_list</result>
+			<result name="delete">/jsps/main.jsp</result>
 			
 			<result name="ajaxDelCheck" type="json">
 				<!-- json形式,返回Action类的指定属性-->

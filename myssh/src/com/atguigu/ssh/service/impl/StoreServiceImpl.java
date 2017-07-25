@@ -22,12 +22,12 @@ public class StoreServiceImpl implements StoreService {
 		storeDao.save(store);
 	}
 
-	@Override
+	@Transactional
 	public void update(Store store) {
 		storeDao.update(store);
 	}
 
-	@Override
+	@Transactional
 	public void delete(Store store) {
 		store = storeDao.getById(store);
 		if(store.getGoodses()==null||store.getGoodses().isEmpty()){
@@ -45,15 +45,6 @@ public class StoreServiceImpl implements StoreService {
 	@Transactional(readOnly=true)
 	public List<Store> getAll() {
 		return storeDao.getAll();
-	}
-	
-	@Transactional(readOnly=true)
-	public boolean isEmpty(Store store){
-		store = storeDao.getById(store);
-		if(store.getGoodses()==null||store.getGoodses().isEmpty()){
-			return true;
-		}
-		return false;
 	}
 	
 }

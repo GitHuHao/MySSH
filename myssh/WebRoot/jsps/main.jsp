@@ -42,9 +42,9 @@
 							<TR>
 								<TD valign=middle align="center" style="height: 129px; ">
 									<DIV id=shouhuo style="height: 178px; ">
-										<s:a id="left1002" action="store_list" namespace="/store" target="content">[仓库管理]</s:a><BR/> 
-										<s:a id="left1003" action="goods_toListJsp" namespace="/goods" target="content">[库存管理]</s:a><BR/> 
-										<s:a id="left1002" action="goods_toAddJsp" namespace="/goods" target="content">[添加货物]</s:a><BR/> 
+										<s:a id="left1002" action="store_list" namespace="/store" target="_content">[仓库管理]</s:a><BR/> 
+										<s:a id="left1003" action="goods_toListJsp" namespace="/goods" target="_content">[库存管理]</s:a><BR/> 
+										<s:a id="left1002" action="goods_toAddJsp" namespace="/goods" target="_content">[添加货物]</s:a><BR/> 
 									</DIV>
 								</TD>
 							</TR>
@@ -52,7 +52,7 @@
 					</TABLE>
 				</TD>
 				<TD vAlign=top align=left width="88%" style="height: 277px; width: 1093px;">
-					<iframe name="content" src="${path}/picture/tyyw.bmp;" frameborder="0" width="100%" height="100%"></iframe>
+					<iframe name="_content" src="${path}/picture/tyyw.bmp;" frameborder="0" width="100%" height="100%"></iframe>
 				</TD>
 			</TR>
 		</TBODY>
