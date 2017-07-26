@@ -5,6 +5,15 @@
 
 <struts>
 	<package name="store" namespace="/store" extends="json-default">
+		<global-results>
+			<result name="error">/jsps/store/error.jsp</result>
+		</global-results>
+
+    	<global-exception-mappings>
+    		<exception-mapping result="error" exception="java.lang.Exception" >
+    		</exception-mapping>
+    	</global-exception-mappings>
+	
 		<!-- struts.enable.DynamicMethodInvocation 开启通配模式 -->
 		<action name="store_*" class="storeAction" method="{1}">
 			<result name="list">/jsps/store/list.jsp</result>

@@ -53,7 +53,11 @@ public class StoreAction extends ActionSupport implements ModelDriven<Store> {
 	
 	public String delete(){
 		// 直接放行,执行删除,页面会跳转
-		storeService.delete(store);
+//		try{
+			storeService.delete(store);
+//		}catch(Exception e){
+//			this.addActionError(this.getText("store.del.error"));
+//		}
 		return "delete";
 	}
 	

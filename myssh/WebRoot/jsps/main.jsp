@@ -16,7 +16,7 @@
 				<TD width=733 background="${path}/picture/header.jpg;"></TD>
 				<TD><FONT style="FONT-SIZE: x-small" color=#fffaed><BR>
 					<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<FONT color=#804060>当前用户：${loginUser.name } </font> 
+						<FONT color=#804060>当前用户：${loginUser.name } <s:actionerror/></font> 
 					</FONT>
 				</TD>
 			</TR>
